@@ -7,6 +7,7 @@ import getDistance from '../helpers'
 import mapStyle from '../mapStyle'
 import Swal from 'sweetalert2'
 import data from '../data'
+import redPin from '../assets/pin.png'
 
 import {
    setLoading,
@@ -18,6 +19,10 @@ import {
 
 import Loading from './Loading'
 
+const AnyReactComponent = () => {
+   return <img src={redPin} style={{ width: 10 }} />
+}
+
 export default function Map() {
    const dispatch = useDispatch()
    const history = useHistory()
@@ -25,6 +30,7 @@ export default function Map() {
    // state
    const [centerLat, setOriginLat] = useState(54.5260);
    const [centerLng, setOriginLng] = useState(15.2551);
+   const [pins, setPins] = useState([]);
 
    // redux state
    const cityToFindLat = useSelector(state => state.cityToFindLat)
@@ -52,6 +58,10 @@ export default function Map() {
          dispatch(setCityPlaced(cityPlaced + 1))
          const origin = `${cityToFindLat},${cityToFindLng}`
          const destination = `${lat},${lng}`
+
+         let newPin = { lat, lng }
+         setPins([...pins, newPin])
+
 
          const { data } = await getDistance(origin, destination)
 
@@ -131,7 +141,19 @@ export default function Map() {
                defaultZoom={3}
                onClick={getPosition}
             >
-               {/* TARUH PIN NANTI */}
+               {/* {
+                  pins.map((pin, index) => {
+                     <AnyReactComponent
+                        key={index}
+                        lat={pin.lat}
+                        lng={pin.lng}
+                     />
+                  })
+               } */}
+               <AnyReactComponent 
+                  lat={centerLat}
+                  lng={centerLng}
+               />
             </GoogleMapReact>
 
          </div>
