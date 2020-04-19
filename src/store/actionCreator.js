@@ -41,9 +41,10 @@ export function setQuestion () {
    }
 }
 
-export function setCityPlaced() {
+export function setCityPlaced(value) {
    return {
-      type: CHANGE_CITY_PLACED
+      type: CHANGE_CITY_PLACED,
+      payload: value
    }
 }
 

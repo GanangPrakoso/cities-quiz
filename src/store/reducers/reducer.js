@@ -32,18 +32,23 @@ export default function reducer(state = initialState, action) {
          return { ...state, index: state.index + 1 }
       }
       case CHANGE_CITY_TO_FIND: {
-         return {
-            ...state,
-            cityToFindName: data.cities[state.index].name,
-            cityToFindLat: data.cities[state.index].position.lat,
-            cityToFindLng: data.cities[state.index].position.lng
+         if (state.index < data.cities.length) {
+            return {
+               ...state,
+               cityToFindName: data.cities[state.index].name,
+               cityToFindLat: data.cities[state.index].position.lat,
+               cityToFindLng: data.cities[state.index].position.lng
+            }
+         }
+         else {
+            return state
          }
       }
       case CHANGE_SCORE: {
          return { ...state, score: state.score - action.payload }
       }
       case CHANGE_CITY_PLACED: {
-         return { ...state, cityPlaced: state.cityPlaced + 1 }
+         return { ...state, cityPlaced: action.payload }
       }
       case CHANGE_CORRECT: {
          return { ...state, correct: action.payload }

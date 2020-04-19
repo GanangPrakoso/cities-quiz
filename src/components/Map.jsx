@@ -32,8 +32,9 @@ export default function Map() {
    const index = useSelector(state => state.index)
    const loading = useSelector(state => state.loading)
    const cityToFindName = useSelector(state => state.cityToFindName)
-   const score = useSelector(state => state.score)
+   // const score = useSelector(state => state.score)
    const correct = useSelector(state => state.correct)
+   const cityPlaced = useSelector(state => state.cityPlaced)
 
    // map style
    const createMapOptions = () => {
@@ -46,14 +47,14 @@ export default function Map() {
    }
 
    const getPosition = async ({ lat, lng }) => {
-      dispatch(setLoading(true))
-      dispatch(setCityPlaced())
       try {
+         dispatch(setLoading(true))
+         dispatch(setCityPlaced(cityPlaced + 1))
          const origin = `${cityToFindLat},${cityToFindLng}`
          const destination = `${lat},${lng}`
 
          const { data } = await getDistance(origin, destination)
-         
+
          const distance = Math.ceil((data.rows[0].elements[0].distance.value) / 1000)
 
          console.log(distance, `ini distancceeeeeeeeeee`);
@@ -67,6 +68,7 @@ export default function Map() {
             dispatch(setCorrect(correct + 1))
             dispatch(setScore(distance))
             dispatch(setLoading(false))
+
             dispatch(setQuestion())
          }
          else {
@@ -81,13 +83,22 @@ export default function Map() {
          }
       }
       catch (error) {
-         console.log(error);
          Swal.fire(
             `I'm sorry`,
             `There's some error while measuring the distance, care to play again?`,
             'question'
-          )
-         history.push('/')
+         )
+         // history.push('/')
+         dispatch(setLoading(false))
+         if (cityPlaced === 0) {
+            dispatch(setCityPlaced(0))
+         }
+         else {
+            dispatch(setCityPlaced(cityPlaced - 1))
+         }
+         if (index === data.cities.length) {
+            history.push('/victory')
+         }
       }
    }
 
