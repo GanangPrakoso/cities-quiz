@@ -8,8 +8,10 @@ import {
 } from 'react-router-dom';
 import store from './store'
 
+import LandingPage from './views/LandingPage'
 import Main from './views/Main'
 import Lose from './views/Lose';
+import Victory from './views/Victory'
 
 function App() {
   return (
@@ -19,10 +21,16 @@ function App() {
           <Switch>
 
             <Route exact path='/'>
+              <LandingPage />
+            </Route>
+            <Route exact path='/play'>
               <Main />
             </Route>
             <Route exact path='/gameover' >
               <Lose />
+            </Route>
+            <Route exact path='/victory' >
+              <Victory />
             </Route>
           </Switch>
         </Router>

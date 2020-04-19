@@ -37,3 +37,10 @@
   display: flex;
   justify-content: space-around;
 }
+
+#home {
+  height: 100vh;
+  /* background-image: url('./assets/landingPage.jpg'); */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./assets/landingPage.jpg');
+  background-size: cover;
+}

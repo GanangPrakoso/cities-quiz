@@ -3,7 +3,9 @@ import {
    CHANGE_LOADING,
    CHANGE_INDEX,
    CHANGE_SCORE,
-   CHANGE_CITY_PLACED
+   CHANGE_CITY_PLACED,
+   RESET_REDUX,
+   CHANGE_CORRECT
 } from '../actionTypes'
 import data from '../../data'
 
@@ -14,11 +16,15 @@ const initialState = {
    score: 1500,
    cityPlaced: 0,
    cityToFindLat: data.cities[0].position.lat,
-   cityToFindLng: data.cities[0].position.lng
+   cityToFindLng: data.cities[0].position.lng,
+   correct: 0
 }
 
 export default function reducer(state = initialState, action) {
    switch (action.type) {
+      case RESET_REDUX: {
+         return initialState
+      }
       case CHANGE_LOADING: {
          return { ...state, loading: action.payload }
       }
@@ -34,11 +40,13 @@ export default function reducer(state = initialState, action) {
          }
       }
       case CHANGE_SCORE: {
-         return {...state, score: state.score - action.payload}
+         return { ...state, score: state.score - action.payload }
       }
-
       case CHANGE_CITY_PLACED: {
-         return {...state, cityPlaced: state.cityPlaced + 1}
+         return { ...state, cityPlaced: state.cityPlaced + 1 }
+      }
+      case CHANGE_CORRECT: {
+         return { ...state, correct: action.payload }
       }
       default:
          return state

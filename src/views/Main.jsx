@@ -1,18 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux'
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom";
+import { setScore, setIndex, setQuestion, resetRedux } from '../store/actionCreator';
+
 
 import Navbar from '../components/Navbar'
 import Map from '../components/Map'
 import Missions from '../components/Missions'
 
 export default function Main() {
+   const dispatch = useDispatch()
    const history = useHistory();
 
    // state
    const score = useSelector(state => state.score)
 
-   if (score <= 0) { //nanti ganti!
+   useEffect(() => {
+      dispatch(resetRedux())
+   }, []);
+
+   if (score <= 0) {
       history.push('/gameover')
    }
 

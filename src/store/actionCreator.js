@@ -3,7 +3,9 @@ import {
    CHANGE_INDEX,
    CHANGE_SCORE,
    CHANGE_CITY_TO_FIND,
-   CHANGE_CITY_PLACED
+   CHANGE_CITY_PLACED,
+   RESET_REDUX,
+   CHANGE_CORRECT
 } from './actionTypes'
 
 export function setLoading (value) {
@@ -22,7 +24,7 @@ export function setScore (value) {
 
 export function setIndex () {
    return {
-      type: CHANGE_INDEX
+      type: CHANGE_INDEX,
    }
 }
 
@@ -42,5 +44,18 @@ export function setQuestion () {
 export function setCityPlaced() {
    return {
       type: CHANGE_CITY_PLACED
+   }
+}
+
+export function resetRedux() {
+   return {
+      type: RESET_REDUX
+   }
+}
+
+export function setCorrect(value) {
+   return {
+      type: CHANGE_CORRECT,
+      payload: value
    }
 }
