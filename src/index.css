@@ -32,21 +32,8 @@
   font-size: large;
 }
 
-.section-padding {
-	padding: 10px 0;
-}
-.bottom {
-    width: 250px;
-    border-width: 200px;
-    border-radius: 100px;
-    border-color: rgb(207, 203, 203);
-}
-.bottom p {
-    margin-bottom: 0;
-    line-height: 50px;
-    font-size: 20px;
-    font-weight: 400;
-}
-.bottom .score p, .bottom .score a:hover{
-    color: #e2e4f5;
+#loading {
+  padding-top: 30vh;
+  display: flex;
+  justify-content: space-around;
 }

@@ -1,4 +1,4 @@
-{
+export default {
     "cities": [{
         name: "Amsterdam",
         position: {
