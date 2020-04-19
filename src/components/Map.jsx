@@ -150,10 +150,10 @@ export default function Map() {
                      />
                   })
                } */}
-               <AnyReactComponent 
+               {/* <AnyReactComponent 
                   lat={centerLat}
                   lng={centerLng}
-               />
+               /> */}
             </GoogleMapReact>
 
          </div>
