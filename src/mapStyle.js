@@ -13,7 +13,7 @@ export default [
         "elementType": "labels",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             },
             {
                 "saturation": "-100"
@@ -34,7 +34,7 @@ export default [
                 "lightness": 40
             },
             {
-                "visibility": "on"
+                "visibility": "off"
             }
         ]
     },
@@ -43,7 +43,7 @@ export default [
         "elementType": "labels.text.stroke",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             },
             {
                 "color": "#000000"
@@ -58,7 +58,7 @@ export default [
         "elementType": "labels.icon",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "off"
             }
         ]
     },
